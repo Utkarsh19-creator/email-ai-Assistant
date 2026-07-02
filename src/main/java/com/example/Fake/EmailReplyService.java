@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailReplyService {
     private final Client client;
-    public EmailReplyService(){
+    public EmailReplyService(@Value("${GEMINI_API_KEY}"){
         //Automatically picks up GEMINI_API_KEY from Environment variables
         this.client= Client.builder()
-                .apiKey(System.getenv("GEMINI_API_KEY"))
+                .apiKey(apiKey)
                 .build();
     }
     public String generateReply(EmailRequest emailRequest){
